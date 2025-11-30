@@ -21,7 +21,7 @@ export const OrderModel = {
     create: async (data) => {
         const exists = await collection().findOne({ numeroPedido: data.numeroPedido });
         if (exists) {
-            throw new Error(`Pedido ${data.numeroPedido} já existe.`);
+            throw new Error(`Order ${data.numeroPedido} already exists.`);
         }
 
         const orderData = {
