@@ -15,7 +15,31 @@ const options = {
       },
     ],
     components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
       schemas: {
+        User: {
+          type: 'object',
+          required: ['username', 'password'],
+          properties: {
+            username: {
+              type: 'string',
+              description: 'Nome de usuário',
+              example: 'admin',
+            },
+            password: {
+              type: 'string',
+              format: 'password',
+              description: 'Senha do usuário',
+              example: '123456',
+            },
+          },
+        },
         Order: {
           type: 'object',
           required: ['numeroPedido', 'valorTotal', 'items'],
@@ -51,6 +75,11 @@ const options = {
         },
       },
     },
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
   },
   apis: ['./src/routes/*.js'], 
 };

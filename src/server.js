@@ -2,6 +2,7 @@ import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 import { connectDB } from './config/db.js';
 import orderRoutes from './routes/orderRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 import { swaggerSpec } from './config/swagger.js';
 
 const port = process.env.PORT;
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Routes
+app.use('/auth', authRoutes);
 app.use('/order', orderRoutes);
 
 // Start server connection
